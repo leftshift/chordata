@@ -1,10 +1,10 @@
 A python3 fork of
 
-##Chordata
+## Chordata
 
 ChorData. Beasts [with strings.] (http://es.wikipedia.org/wiki/Chordata) Get it, right? Okay, this is a dummy chordbook with a LOT of inversions for mandolin, ukulele and guitar using standard tuning. There's also drop-D for guitar as I grew up playing like that. You can also find a chord name by knowing notes you play.
 
-##Features
+## Features
 
 You can user either a simple [webapp](http://chords.starenka.net/search?chord=C&instrument=mando&max_fingers=)
 
@@ -50,7 +50,7 @@ or a CLI interface:
                             instrument/tuning to search
 
 
-###To get just some chords you need quick:
+### To get just some chords you need quick:
 
 
     chordata.py c f g
@@ -82,7 +82,7 @@ or a CLI interface:
 
 
 
-###In case you need to see all the inversions:
+### In case you need to see all the inversions:
 
 
     chordata.py c --all --instrument uke
@@ -112,7 +112,7 @@ or a CLI interface:
     ... (more) ...
 
 
-###To see what other chords you can play with "this finger-pattern"*:
+### To see what other chords you can play with "this finger-pattern"*:
 
 *Does not always mean same strings. Also considers chords with open strings and barre equal.
 
@@ -154,7 +154,7 @@ or a CLI interface:
               ... (more) ...
 
 
-###Know a pattern, but have no idea what chord is it?
+### Know a pattern, but have no idea what chord is it?
 
     rchordata.py 1 2 3 4 --instrument mando
 
@@ -167,7 +167,7 @@ or a CLI interface:
     Is known as: Caug/G#, Eaug/G#, G#aug
 
 
-###To lame? Specify how many max fingers you need for a G:
+### Too lame? Specify how many max fingers you need for a G:
 
     chordata g --instrument mando --max-fingers 2 --all
 
@@ -210,7 +210,7 @@ or a CLI interface:
 
 
 
-##PLANNED FEATURES
+## PLANNED FEATURES
 
 - chord notes
 - transpositions, progressions
