@@ -32,24 +32,24 @@ if __name__ == '__main__':
         matches = [(n,p) for n,p in CHORDS if any([n.lower()==one, n[:len(one)+1].lower()==one+'/'])]
 
         if args.max_fingers:
-            matches = [(n,p) for n,p in matches if len(filter(lambda x: x > 0, p)) <= args.max_fingers]
+            matches = [(n,p) for n,p in matches if len([x for x in p if x > 0]) <= args.max_fingers]
 
         for name, pattern in matches[:(1,-1)[args.with_inversions]]:
             name = '[ ' + name + ' ]'
             if name != prev:
-                print '\n', name.center(40, '=')
+                print('\n', name.center(40, '='))
 
             render(pattern, STRINGS)
 
             if args.same_shapes:
                 shapes = with_same_pattern(pattern, by_diff)
                 if shapes:
-                    print '\n', ' ' * PADD, 'w/ same shape:\n'
+                    print('\n', ' ' * PADD, 'w/ same shape:\n')
                 for sname, spattern in shapes:
                     sname = '[ ' + sname + ' ]'
-                    print ' ' * PADD, sname.center(30, '~')
+                    print(' ' * PADD, sname.center(30, '~'))
                     render(spattern, STRINGS, PADD)
-                    print '\n'
+                    print('\n')
 
             prev = name
-            print '\n'
+            print('\n')

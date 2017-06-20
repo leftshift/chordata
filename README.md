@@ -1,3 +1,5 @@
+A python3 fork of
+
 ##Chordata
 
 ChorData. Beasts [with strings.] (http://es.wikipedia.org/wiki/Chordata) Get it, right? Okay, this is a dummy chordbook with a LOT of inversions for mandolin, ukulele and guitar using standard tuning. There's also drop-D for guitar as I grew up playing like that. You can also find a chord name by knowing notes you play.

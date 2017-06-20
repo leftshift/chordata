@@ -24,7 +24,7 @@ def build_diff_dict(chords):
     return diff
 
 def with_same_pattern(pattern, by_diff):
-    ret = filter(lambda x: x[1]!=pattern, by_diff.get(shape_to_diff_id(pattern)))
+    ret = [x for x in by_diff.get(shape_to_diff_id(pattern)) if x[1]!=pattern]
     return ret or []
 
 def render(pattern, strings, padd=0):
@@ -32,15 +32,15 @@ def render(pattern, strings, padd=0):
     BAR = '|-%s-'
 
     min_, max_ = min(pattern), max(pattern)+1
-    bars = range(min_-1 if min_ > 1 else 1, max_+1)
-    print ' ' * padd + ' ' * 3, ' '.join([str(i).ljust(3, ' ') for i in bars])
+    bars = list(range(min_-1 if min_ > 1 else 1, max_+1))
+    print(' ' * padd + ' ' * 3, ' '.join([str(i).ljust(3, ' ') for i in bars]))
     for string, note in zip(reversed(strings), reversed(pattern)):
         muted = note < 0
         line = [BAR % 'O' if note == i else BAR % '-' for i in bars]
         line = ''.join(line)
         line = ('X' if muted else '|') + line[1:]
-        print ' ' * padd + '%s%s %s|%s' % (('',DIM)[muted], string,
-                                           ''.join(line), ('',DIM_RESET)[muted])
+        print(' ' * padd + '%s%s %s|%s' % (('',DIM)[muted], string,
+                                           ''.join(line), ('',DIM_RESET)[muted]))
 
 def get_instrument(instrument):
     instrument = importlib.import_module(instrument)

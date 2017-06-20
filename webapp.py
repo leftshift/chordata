@@ -37,7 +37,7 @@ def search():
 
     matches = [(n,p) for n,p in CHORDS if any([n.lower()==nchord, n[:len(chord)+1].lower()==nchord+'/'])]
     if max_fingers:
-        matches = [(n,p) for n,p in matches if len(filter(lambda x: x > 0, p)) <= int(max_fingers)]
+        matches = [(n,p) for n,p in matches if len([x for x in p if x > 0]) <= int(max_fingers)]
 
     matches = [(n,p,with_same_pattern(p, by_diff)) for n,p in matches]
 
@@ -55,7 +55,7 @@ def rsearch():
     STRINGS, CHORDS = get_instrument(instrument)
     by_diff = build_diff_dict(CHORDS)
 
-    notes = tuple(map(lambda x: int(x) if x not in 'xX' else -1, pattern.split()))
+    notes = tuple([int(x) if x not in 'xX' else -1 for x in pattern.split()])
 
     matches = []
     if len(notes) == len(STRINGS):
