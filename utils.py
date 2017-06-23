@@ -63,5 +63,5 @@ def render(pattern, strings, padd=0):
 
 
 def get_instrument(instrument):
-    instrument = importlib.import_module(instrument)
+    instrument = importlib.import_module('chordata.' + instrument)
     return instrument.STRINGS, instrument.CHORDS
