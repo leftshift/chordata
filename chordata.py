@@ -4,7 +4,7 @@
 import argparse
 
 from utils import (render, build_diff_dict, with_same_pattern, get_instrument,
-                   INSTRUMENT_CHOICES, FLATS_TO_SHARPS)
+                   get_chords, INSTRUMENT_CHOICES, FLATS_TO_SHARPS)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='A dummy chordbook')
@@ -25,16 +25,11 @@ if __name__ == '__main__':
     by_diff = build_diff_dict(CHORDS)
 
     for one in args.chords:
-        one = one.lower()
-        one = FLATS_TO_SHARPS.get(one, one)
+        matches = get_chords(STRINGS, CHORDS, one, args.max_fingers,
+                             args.with_inversions, args.same_shapes)
+        prev = ""
 
-        prev = None
-        matches = [(n,p) for n,p in CHORDS if any([n.lower()==one, n[:len(one)+1].lower()==one+'/'])]
-
-        if args.max_fingers:
-            matches = [(n,p) for n,p in matches if len(filter(lambda x: x > 0, p)) <= args.max_fingers]
-
-        for name, pattern in matches[:(1,-1)[args.with_inversions]]:
+        for name, pattern in matches:
             name = '[ ' + name + ' ]'
             if name != prev:
                 print '\n', name.center(40, '=')
