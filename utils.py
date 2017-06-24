@@ -20,7 +20,7 @@ def get_chords(STRINGS, CHORDS, name, max_fingers=10, with_inversions=False,
     matches = [(n,p) for n,p in CHORDS if any([n.lower()==one, n[:len(one)+1].lower()==one+'/'])]
 
     if max_fingers:
-        matches = [(n,p) for n,p in matches if len([x for x in p if x > 0]) <= args.max_fingers]
+        matches = [(n,p) for n,p in matches if len([x for x in p if x > 0]) <= max_fingers]
 
     return matches[:(1,-1)[with_inversions]]
 
@@ -63,5 +63,5 @@ def render(pattern, strings, padd=0):
 
 
 def get_instrument(instrument):
-    instrument = importlib.import_module('chordata.' + instrument)
+    instrument = importlib.import_module("chordata." + instrument)
     return instrument.STRINGS, instrument.CHORDS
