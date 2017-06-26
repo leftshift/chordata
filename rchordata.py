@@ -25,5 +25,5 @@ if __name__ == '__main__':
     matches = [name for name, patt in CHORDS if notes == patt]
 
     if matches:
-        render(notes, STRINGS)
+        print(render(notes, STRINGS))
         print('\nIs known as: %s\n' % ', '.join(matches))

@@ -13,7 +13,6 @@ FLATS_TO_SHARPS = {'db':'c#', 'eb':'d#', 'gb':'f#', 'bb': 'a#'}
 
 def get_chords(STRINGS, CHORDS, name, max_fingers=10, with_inversions=False,
                same_shapes=False):
-    by_diff = build_diff_dict(CHORDS)
     name = name.lower()
     one = FLATS_TO_SHARPS.get(name, name)
 
@@ -53,13 +52,15 @@ def render(pattern, strings, padd=0):
     min_, max_ = min(pattern), max(pattern)+1
     bars = list(range(min_-1 if min_ > 1 else 1, max_+1))
     print(' ' * padd + ' ' * 3, ' '.join([str(i).ljust(3, ' ') for i in bars]))
+    lines = []
     for string, note in zip(reversed(strings), reversed(pattern)):
         muted = note < 0
         line = [BAR % 'O' if note == i else BAR % '-' for i in bars]
         line = ''.join(line)
         line = ('X' if muted else '|') + line[1:]
-        print(' ' * padd + '%s%s %s|%s' % (('',DIM)[muted], string,
+        lines.append( ' ' * padd + '%s%s %s|%s' % (('',DIM)[muted], string,
                                            ''.join(line), ('',DIM_RESET)[muted]))
+    return '\n'.join(lines)
 
 
 def get_instrument(instrument):

@@ -34,7 +34,7 @@ if __name__ == '__main__':
             if name != prev:
                 print('\n', name.center(40, '='))
 
-            render(pattern, STRINGS)
+            print(render(pattern, STRINGS))
 
             if args.same_shapes:
                 shapes = with_same_pattern(pattern, by_diff)
@@ -43,7 +43,7 @@ if __name__ == '__main__':
                 for sname, spattern in shapes:
                     sname = '[ ' + sname + ' ]'
                     print(' ' * PADD, sname.center(30, '~'))
-                    render(spattern, STRINGS, PADD)
+                    print(render(spattern, STRINGS, PADD))
                     print('\n')
 
             prev = name
